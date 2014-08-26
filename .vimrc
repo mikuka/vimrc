@@ -270,9 +270,9 @@ vmap <F2> <Esc><F2>gv
 imap <F2> <c-o><F2>
 
 " Поиск ack-grep по <F3>
-nmap <F3> <Esc>:Ack ''<Left>
-vmap <F3> <Esc>:Ack ''<Left>
-imap <F3> <Esc><Esc>:Ack ''<Left>
+nmap <F3> <Esc>:Ack --ignore-file=match:tags ''<Left>
+vmap <F3> <Esc>:Ack --ignore-file=match:tags ''<Left>
+imap <F3> <Esc><Esc>:Ack --ignore-file=match:tags ''<Left>
 
 " Просмотр списка буферов по <F4>
 nmap <F4> <Esc>:Unite buffer<CR>
