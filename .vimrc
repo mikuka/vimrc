@@ -109,6 +109,7 @@ let g:airline_linecolumn_prefix = '¶ '
 let g:airline_fugitive_prefix = '⎇ '
 let g:airline_paste_symbol = 'ρ'
 
+" Настройка Unite
 " Автоматический insert mode
 let g:unite_enable_start_insert = 1
 
@@ -118,16 +119,48 @@ let g:unite_split_rule = "botright"
 " Отключаем замену статус строки
 let g:unite_force_overwrite_statusline = 0
 
-" Размер окна Unite
+" Размер окна 
 let g:unite_winheight = 10
 
 " Красивые стрелочки
 let g:unite_candidate_icon="▶"
 
+" Свое меню
+let g:unite_source_menu_menus = {}
+let g:unite_source_menu_menus.mymenu = {
+            \     'description' : 'My Unite menu',
+            \ }
+let g:unite_source_menu_menus.mymenu.candidates = {
+            \   'mru&buffer'      : 'Unite buffer file_mru',
+            \   'tag'      : 'Unite tag',
+            \   'file'      : 'Unite file',
+            \   'file_rec'      : 'Unite file_rec',
+            \   'file_rec/async'      : 'Unite file_rec/async',
+            \   'find'      : 'Unite find',
+            \   'grep'      : 'Unite grep',
+            \   'register'      : 'Unite register',
+            \   'bookmark'      : 'Unite bookmark',
+            \   'output'      : 'Unite output',
+            \ }
+function g:unite_source_menu_menus.mymenu.map(key, value)
+		return {
+			\   'word' : a:key, 'kind' : 'command',
+			\   'action__command' : a:value,
+		 	\ }
+endfunction
+
+" END
+
 set noswapfile
 set number
-set wrap
 set tabstop=4
+
+let &showbreak = '↳ '
+set wrap
+"set cpo=79
+" Автоперенос по словам
+"set tw=79
+"set formatoptions+=t
 
 " Кодировка терминала, должна совпадать с той, которая используется для вывода
 " в терминал
@@ -224,13 +257,14 @@ filetype plugin indent on
 NeoBundleCheck
 
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Shougo/vimproc.vim'
+" NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
 " NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/tComment'
 NeoBundle 'mileszs/ack.vim'
+" NeoBundle 'dahu/vim-asciidoc'
 
 "############################## Bundle ####################################
 "set nocompatible
@@ -284,6 +318,11 @@ nmap <F10> <Esc>:q<CR>
 vmap <F10> <Esc>:q<CR>
 imap <F10> <Esc><Esc>:q<CR>
 
+" Выход без сохранения по <F12>
+nmap <F12> <Esc>:q!<CR>
+vmap <F12> <Esc>:q!<CR>
+imap <F12> <Esc><Esc>:q!<CR>
+
 " предыдущий буфер
 map <F5> :bp<CR>
 vmap <F5> <Esc>:bp<CR>i
@@ -307,3 +346,27 @@ imap <C-TAB> <Esc>:tabnext<CR>i
 " imap <C-t> <Esc>:tabnew<CR>a
 " nmap <C-w> :tabclose<CR>
 " imap <C-w> <Esc>:tabclose<CR>
+
+
+"############################## AsciiDoc ##################################
+" http://www.methods.co.nz/asciidoc/chunked/ape.html
+
+" Use bold bright fonts.
+" set background=dark
+
+" Show tabs and trailing characters.
+"set listchars=tab:»·,trail:·,eol:¬
+set listchars=tab:»·,trail:·
+set list
+
+" Reformat paragraphs and list.
+nnoremap <Leader>r gq}
+
+" Delete trailing white space and Dos-returns and to expand tabs to spaces.
+nnoremap <Leader>t :set et<CR>:retab!<CR>:%s/[\r \t]\+$//<CR>
+
+autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,TODO,CHANGELOG,NOTES,ABOUT
+        \ setlocal autoindent expandtab tabstop=8 softtabstop=2 shiftwidth=2 filetype=asciidoc
+        \ textwidth=70 wrap formatoptions=tcqn
+        \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
+        \ comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
