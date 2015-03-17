@@ -153,7 +153,7 @@ endfunction
 
 set noswapfile
 set number
-set tabstop=4
+set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 smartindent
 
 let &showbreak = '↳ '
 set wrap
