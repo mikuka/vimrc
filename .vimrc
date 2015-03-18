@@ -103,11 +103,12 @@ let g:airline_theme='dark'
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#formatter = 'unique_tail'
 " let g:airline_section_b = '%{strftime("%c")}'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline_fugitive_prefix = '⎇ '
-let g:airline_paste_symbol = 'ρ'
+let g:airline_powerline_fonts = 1
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '◀'
+" let g:airline_linecolumn_prefix = '¶ '
+" let g:airline_fugitive_prefix = '⎇ '
+" let g:airline_paste_symbol = 'ρ'
 
 " Настройка Unite
 " Автоматический insert mode
@@ -222,6 +223,9 @@ function! NTFinderP()
 endfunction
 autocmd VimEnter * wincmd p
 
+"################################# Ack ####################################
+let g:ack_default_options = " "
+"--ignore-file=match:tags
 "############################## Подсветка #################################
 augroup project
 	autocmd!
@@ -257,14 +261,14 @@ filetype plugin indent on
 NeoBundleCheck
 
 NeoBundle 'bling/vim-airline'
-" NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/tComment'
 NeoBundle 'mileszs/ack.vim'
-" NeoBundle 'dahu/vim-asciidoc'
+NeoBundle 'dahu/vim-asciidoc'
 
 "############################## Bundle ####################################
 "set nocompatible
@@ -304,9 +308,9 @@ vmap <F2> <Esc><F2>gv
 imap <F2> <c-o><F2>
 
 " Поиск ack-grep по <F3>
-nmap <F3> <Esc>:Ack --ignore-file=match:tags ''<Left>
-vmap <F3> <Esc>:Ack --ignore-file=match:tags ''<Left>
-imap <F3> <Esc><Esc>:Ack --ignore-file=match:tags ''<Left>
+nmap <F3> <Esc>:Ack ''<Left>
+vmap <F3> <Esc>:Ack ''<Left>
+imap <F3> <Esc><Esc>:Ack ''<Left>
 
 " Просмотр списка буферов по <F4>
 nmap <F4> <Esc>:Unite buffer<CR>
@@ -323,12 +327,12 @@ nmap <F12> <Esc>:q!<CR>
 vmap <F12> <Esc>:q!<CR>
 imap <F12> <Esc><Esc>:q!<CR>
 
-" предыдущий буфер
+" предыдущий буфер <F5>
 map <F5> :bp<CR>
 vmap <F5> <Esc>:bp<CR>i
 imap <F5> <Esc>:bp<CR>i
 
-" следующий буфер
+" следующий буфер <F6>
 map <F6> :bn<CR>
 vmap <F6> <Esc>:bn<CR>i
 imap <F6> <Esc>:bn<CR>i
