@@ -194,6 +194,7 @@ set mouse=a "Включить поддержку мыши
 autocmd VimEnter * NERDTree
 
 set keymap=russian-jcukenwin
+set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
@@ -268,7 +269,7 @@ NeoBundle 'motemen/git-vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/tComment'
 NeoBundle 'mileszs/ack.vim'
-NeoBundle 'dahu/vim-asciidoc'
+"NeoBundle 'dahu/vim-asciidoc'
 
 "############################## Bundle ####################################
 "set nocompatible
