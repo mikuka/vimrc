@@ -297,7 +297,18 @@ NeoBundle 'mileszs/ack.vim'
 "Bundle 'git://git.wincent.com/command-t.git'
 
 
+
 "############################## Key maps ##################################
+" Запрет использования стрелок
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
 " Сохранение буфера в файл
 nmap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
