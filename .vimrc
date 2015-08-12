@@ -104,11 +104,6 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#formatter = 'unique_tail'
 " let g:airline_section_b = '%{strftime("%c")}'
 let g:airline_powerline_fonts = 1
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '◀'
-" let g:airline_linecolumn_prefix = '¶ '
-" let g:airline_fugitive_prefix = '⎇ '
-" let g:airline_paste_symbol = 'ρ'
 
 " Настройка Unite
 " Автоматический insert mode
@@ -150,7 +145,6 @@ function g:unite_source_menu_menus.mymenu.map(key, value)
 		 	\ }
 endfunction
 
-" END
 
 set noswapfile
 set number
@@ -201,27 +195,28 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 " autocmd VimEnter * if &filetype !=# 'gitcommit' | NERDTree | wincmd p | endif
 
-function! NTFinderP()
-    "" Check if NERDTree is open
-    if exists("t:NERDTreeBufName")
-        let s:ntree = bufwinnr(t:NERDTreeBufName)
-    else
-        let s:ntree = -1
-    endif
-    if (s:ntree != -1)
-        "" If NERDTree is open, close it.
-        :NERDTreeClose
-    else
-        "" Try to open a :Rtree for the rails project
-        if exists(":Rtree")
-            "" Open Rtree (using rails plugin, it opens in project dir)
-            :Rtree
-        else
-            "" Open NERDTree in the file path
-            :NERDTreeFind
-        endif
-    endif
-endfunction
+" function! NTFinderP()
+"     "" Check if NERDTree is open
+"     if exists("t:NERDTreeBufName")
+"         let s:ntree = bufwinnr(t:NERDTreeBufName)
+"     else
+"         let s:ntree = -1
+"     endif
+"     if (s:ntree != -1)
+"         "" If NERDTree is open, close it.
+"         :NERDTreeClose
+"     else
+"         "" Try to open a :Rtree for the rails project
+"         if exists(":Rtree")
+"             "" Open Rtree (using rails plugin, it opens in project dir)
+"             :Rtree
+"         else
+"             "" Open NERDTree in the file path
+"             :NERDTreeFind
+"         endif
+"     endif
+" endfunction
+
 autocmd VimEnter * wincmd p
 
 "################################# Ack ####################################
@@ -270,6 +265,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/tComment'
 NeoBundle 'mileszs/ack.vim'
 "NeoBundle 'dahu/vim-asciidoc'
+NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 
 "############################## Bundle ####################################
 "set nocompatible
@@ -329,16 +325,6 @@ nmap <F4> <Esc>:Unite buffer<CR>
 vmap <F4> <Esc>:Unite buffer<CR>
 imap <F4> <Esc><Esc>:Unite buffer<CR>
 
-" Выход по <F10>
-nmap <F10> <Esc>:q<CR>
-vmap <F10> <Esc>:q<CR>
-imap <F10> <Esc><Esc>:q<CR>
-
-" Выход без сохранения по <F12>
-nmap <F12> <Esc>:q!<CR>
-vmap <F12> <Esc>:q!<CR>
-imap <F12> <Esc><Esc>:q!<CR>
-
 " предыдущий буфер <F5>
 map <F5> :bp<CR>
 vmap <F5> <Esc>:bp<CR>i
@@ -348,6 +334,26 @@ imap <F5> <Esc>:bp<CR>i
 map <F6> :bn<CR>
 vmap <F6> <Esc>:bn<CR>i
 imap <F6> <Esc>:bn<CR>i
+
+" Unite по <F9>
+nmap <F9> <Esc>:Unite<CR>
+vmap <F9> <Esc>:Unite<CR>
+imap <F9> <Esc><Esc>:Unite<CR>
+
+" Unite mymenu по <F9>
+nmap <A-F9> <Esc>:Unite menu:mymenu<CR>
+vmap <A-F9> <Esc>:Unite menu:mymenu<CR>
+imap <A-F9> <Esc><Esc>:Unite menu:mymenu<CR>
+
+" Выход по <F10>
+nmap <F10> <Esc>:q<CR>
+vmap <F10> <Esc>:q<CR>
+imap <F10> <Esc><Esc>:q<CR>
+
+" Выход без сохранения по <F12>
+nmap <F12> <Esc>:q!<CR>
+vmap <F12> <Esc>:q!<CR>
+imap <F12> <Esc><Esc>:q!<CR>
 
 " Переключение табов (вкладок) с помощью SHIFT+TAB и CTRL+TAB
 map <S-TAB> :tabprevious<CR>
