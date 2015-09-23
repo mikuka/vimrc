@@ -325,15 +325,18 @@ nmap <F4> <Esc>:Unite buffer<CR>
 vmap <F4> <Esc>:Unite buffer<CR>
 imap <F4> <Esc><Esc>:Unite buffer<CR>
 
-" предыдущий буфер <F5>
+" Предыдущий буфер <F5>
 map <F5> :bp<CR>
 vmap <F5> <Esc>:bp<CR>i
 imap <F5> <Esc>:bp<CR>i
 
-" следующий буфер <F6>
+" Следующий буфер <F6>
 map <F6> :bn<CR>
 vmap <F6> <Esc>:bn<CR>i
 imap <F6> <Esc>:bn<CR>i
+
+" Переключение NERDTree <F8>
+map <F8> :NERDTreeToggle<CR> 
 
 " Unite по <F9>
 nmap <F9> <Esc>:Unite<CR>
