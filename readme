@@ -1,2 +1,5 @@
 http://choorucode.com/2013/07/12/how-to-install-and-use-the-vim-airline-plugin-for-vim/
 Airline fonts https://github.com/powerline/fonts
+
+Search multiple files http://vimcasts.org/episodes/search-multiple-files-with-vimgrep/
+Installing the ack commandline search utility in Windows via Cygwin http://unlearningwindows.jonesmz.com/2014/04/installing-ack-commandline-search.html
