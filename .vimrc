@@ -1,4 +1,5 @@
-
+" использование оболочки bash
+" set shell=bash
 " запрет режима совместимости с vi
 set nocompatible
 " включение подсветки
@@ -139,36 +140,34 @@ function g:unite_source_menu_menus.mymenu.map(key, value)
 endfunction
 
 "############################## NeoBundle #################################
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+" Required:
+set runtimepath^=~/.vim/bundle/neobundle.vim/
 
 " Required:
-" call neobundle#append()
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+			\ 'build' : {
+			\     'windows' : 'tools\\update-dll-mingw',
+			\     'cygwin' : 'make -f make_cygwin.mak',
+			\     'mac' : 'make',
+			\     'linux' : 'make',
+			\     'unix' : 'gmake',
+			\    },
+			\ }
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
-call neobundle#end()
-
 " Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
+" NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'motemen/git-vim'
@@ -177,6 +176,13 @@ NeoBundle 'vim-scripts/tComment'
 NeoBundle 'mileszs/ack.vim'
 "NeoBundle 'dahu/vim-asciidoc'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+NeoBundle 'yegappan/grep'
+
+call neobundle#end()
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
 
 "############################## Key maps ##################################
 " запрет использования стрелок
@@ -190,9 +196,14 @@ noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
 " сохранение буфера в файл
-nmap <c-s> :w<CR>
-vmap <c-s> <Esc><c-s>gv
-imap <c-s> <Esc><c-s>
+" nmap <C-s> :update<CR>
+" vmap <C-s> <Esc><c-s>gv
+" imap <C-s> <Esc><c-s>
+
+" <F1>
+nmap <F1> <>
+vmap <F1> <>
+imap <F1> <>
 
 " сохранение буфера по <F2>
 nmap <F2> :update<CR>
@@ -200,9 +211,12 @@ vmap <F2> <Esc><F2>gv
 imap <F2> <c-o><F2>
 
 " поиск ack-grep по <F3>
-nmap <F3> <Esc>:Ack ''<Left>
-vmap <F3> <Esc>:Ack ''<Left>
-imap <F3> <Esc><Esc>:Ack ''<Left>
+" nmap <F3> <Esc>:Ack ''<Left>
+" vmap <F3> <Esc>:Ack ''<Left>
+" imap <F3> <Esc><Esc>:Ack ''<Left>
+nmap <F3> <Esc>:Rgrep ''<Left>
+vmap <F3> <Esc>:Rgrep ''<Left>
+imap <F3> <Esc><Esc>:Rgrep ''<Left>
 
 " просмотр списка буферов по <F4>
 nmap <F4> <Esc>:Unite buffer<CR>
@@ -284,7 +298,7 @@ autocmd BufRead,BufNewFile *.txt,*.asciidoc,README,TODO,CHANGELOG,NOTES,ABOUT
 function! s:insert_gates()
   let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
   execute "normal! i#ifndef " . gatename
-  execute "normal! o#define " . gatename . " "
+  execute "normal! o#define " . gatename . ""
   execute "normal! Go#endif /* " . gatename . " */"
   normal! kk
 endfunction
