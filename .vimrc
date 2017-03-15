@@ -140,49 +140,34 @@ function g:unite_source_menu_menus.mymenu.map(key, value)
 endfunction
 
 "############################## NeoBundle #################################
-" Required:
-set runtimepath^=~/.vim/bundle/neobundle.vim/
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+if &compatible
+  set nocompatible
+endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim directory
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-			\ 'build' : {
-			\     'windows' : 'tools\\update-dll-mingw',
-			\     'cygwin' : 'make -f make_cygwin.mak',
-			\     'mac' : 'make',
-			\     'linux' : 'make',
-			\     'unix' : 'gmake',
-			\    },
-			\ }
+if dein#load_state(expand('~/.vim/dein')) " path to plugin base path directory
+  call dein#begin('~/.vim/dein/repos/github.com/Shougo/dein.vim') " path to dein.vim directory
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
+" call dein#add() " path to plugin base path directory
+  call dein#add('Shougo/unite.vim')
+" call dein#add('Shougo/vimproc.vim')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('motemen/git-vim')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('vim-scripts/tComment')
+  call dein#add('mileszs/ack.vim')
+" call dein#add('dahu/vim-asciidoc')
+  call dein#add('Xuyuanp/nerdtree-git-plugin')
+  call dein#add('yegappan/grep')
+" call dein#add('Valloric/YouCompleteMe')
+  
+  call dein#end()
+  call dein#save_state()
+endif
 
-" Required:
 filetype plugin indent on
-
-" NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'motemen/git-vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'vim-scripts/tComment'
-NeoBundle 'mileszs/ack.vim'
-"NeoBundle 'dahu/vim-asciidoc'
-NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-NeoBundle 'yegappan/grep'
-
-call neobundle#end()
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+syntax enable
 
 "############################## Key maps ##################################
 " запрет использования стрелок
