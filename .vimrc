@@ -35,11 +35,11 @@ set noswapfile
 set number
 " ТАБУЛЯЦИЯ, см. http://habrahabr.ru/post/64224
 " настройка табуляции (ширина, сдвиг)
-set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 
+set tabstop=4 softtabstop=0 shiftwidth=4 smarttab expandtab
 " копирование отступа от предыдущей строки
 set autoindent
 " включение умной автотабуляции
-set smartindent
+" set smartindent
 " включение переноса строк
 set wrap
 " дополнение переноса строки спец символом
@@ -161,7 +161,8 @@ if dein#load_state(expand('~/.vim/dein')) " path to plugin base path directory
   call dein#add('Xuyuanp/nerdtree-git-plugin')
   call dein#add('yegappan/grep')
 " call dein#add('Valloric/YouCompleteMe')
-  
+  call dein#add('vim-airline/vim-airline')
+
   call dein#end()
   call dein#save_state()
 endif
