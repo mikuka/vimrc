@@ -2,6 +2,8 @@
 
 DIR=~/.vim
 REPO=$(pwd)
+DEIN_URL=https://github.com/Shougo/dein.vim.git
+FONTS_URL=https://github.com/powerline/fonts.git
 
 mkdir $DIR
 cp -R colors $DIR
@@ -11,13 +13,13 @@ cd $DIR
 # Install
 echo "Install Vim/Neovim plugin manager"
 mkdir dein
-git clone https://github.com/Shougo/dein.vim.git
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh dein
+git clone $DEIN_URL $REPO/dein
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > $REPO/installer.sh
+sh $REPO/installer.sh dein
 
 # Install fonts
 echo "Install Powerline fonts"
-git clone https://github.com/powerline/fonts.git fonts
+git clone $FONTS_URL $REPO/fonts
 fonts/install.sh
 
 
