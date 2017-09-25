@@ -73,6 +73,7 @@ set mouse=a
 autocmd VimEnter * NERDTree
 " активное правое окно
 autocmd VimEnter * wincmd p
+let NERDTreeIgnore=['\.o$' ,'\~$']
 
 set keymap=russian-jcukenwin
 set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
