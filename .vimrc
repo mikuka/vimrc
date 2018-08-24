@@ -60,7 +60,7 @@ set t_Co=256
 " цветовая схема
 colorscheme desert256
 " отображение столбца по ширине строки
-set colorcolumn=80
+set colorcolumn=120
 " цвет столбца - ctermbg
 highlight ColorColumn ctermbg=darkblue
 " автоотступы для новых строк
@@ -73,6 +73,9 @@ set mouse=a
 autocmd VimEnter * NERDTree
 " активное правое окно
 autocmd VimEnter * wincmd p
+" поддержка CTags
+set tags=tags
+
 let NERDTreeIgnore=['\.o$' ,'\~$']
 
 set keymap=russian-jcukenwin
