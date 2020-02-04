@@ -143,7 +143,7 @@ function g:unite_source_menu_menus.mymenu.map(key, value)
 		 	\ }
 endfunction
 
-"############################## NeoBundle #################################
+"############################## Shougo/dein #################################
 
 if &compatible
   set nocompatible
@@ -166,6 +166,8 @@ if dein#load_state(expand('~/.vim/dein')) " path to plugin base path directory
   call dein#add('yegappan/grep')
 " call dein#add('Valloric/YouCompleteMe')
   call dein#add('vim-airline/vim-airline')
+  call dein#add('python-mode/python-mode')
+  call dein#add('davidhalter/jedi-vim')
 
   call dein#end()
   call dein#save_state()
